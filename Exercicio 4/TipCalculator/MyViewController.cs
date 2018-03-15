@@ -40,6 +40,13 @@ namespace TipCalculator
             };
 
             View.AddSubviews(totalAmount, calcButton, resultLabel);
+
+            calcButton.TouchUpInside += (s, e) => {
+                double value = 0;
+                Double.TryParse(totalAmount.Text, out value);
+                resultLabel.Text = string.Format("Tip is {0:C}", value * 0.2);
+                totalAmount.ResignFirstResponder();
+            };
         }
     }
 }
